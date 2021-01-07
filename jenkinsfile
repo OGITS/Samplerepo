@@ -1,0 +1,28 @@
+pipeline{
+    agent any
+	
+	stages{
+	  stage('validation stage') {
+	     steps{
+		  withMaven(maven : 'maven : maven-3.6.3') {
+		      sh 'mvn clean validate'
+			  }
+			}
+		}
+	   stage('Test Stage') {
+	     steps{
+		  withMaven(maven : 'maven : maven-3.6.3') {
+		      sh 'mvn clean test'
+			  }
+			}
+		}
+	  stage('package Stage') {
+	     steps{
+		  withMaven(maven : 'maven : maven-3.6.3') {
+		      sh 'mvn clean package'
+			  }
+			}
+		}
+	  
+	 }
+}	
